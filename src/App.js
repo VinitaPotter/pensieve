@@ -1,27 +1,31 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route } from 'react-router-dom';
+import Navbar from './components/navigation/Navbar';
+import SignIn from './components/login/Signin';
+import Register from './components/login/Register';
+import BlogList from './components/blog/BlogList';
+import BlogPost from './components/blog/BlogPost';
+import CreatePost from './components/create/CreatePost';
+import Profile from './components/user/Profile'
+import Footer from './components/navigation/Footer'
+
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+      <BrowserRouter>
+        <div className="App">
+          <Navbar />
+          <Route exact path="/" component={SignIn} />
+          <Route path="/register" component={Register} />
+          <Route path="/blogs" component={BlogList} />
+          <Route path="/post/:id" component={BlogPost} />
+          <Route path="/create" component={CreatePost} />
+          <Route path="/profile" component={Profile} />
+          <Footer />
+        </div>
+      </BrowserRouter>
+    )
   }
 }
 
